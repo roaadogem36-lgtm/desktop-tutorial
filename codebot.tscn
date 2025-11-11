@@ -1,0 +1,527 @@
+[gd_scene load_steps=20 format=4 uid="uid://or8sml3a5j3g"]
+
+[ext_resource type="PackedScene" uid="uid://jnrusvm3gric" path="res://spaces/background.tscn" id="1_oxefs"]
+[ext_resource type="Texture2D" uid="uid://dt41yjqvst0uw" path="res://360_F_511095523_WUmBt4yw9wAkNA72R5GHOvMP1vpU8p9W.jpg" id="2_snmma"]
+[ext_resource type="PackedScene" uid="uid://dthyncc3spfks" path="res://spaces/dangerzone.tscn" id="3_qrtp2"]
+[ext_resource type="PackedScene" uid="uid://danlrmsfmsros" path="res://spaces/tilemap.tscn" id="4_dtw35"]
+[ext_resource type="PackedScene" uid="uid://daf24t18h3n5e" path="res://components/coin/coin.tscn" id="5_kgfcb"]
+[ext_resource type="Texture2D" uid="uid://bp7r8v6uirkls" path="res://زجاجه.png" id="6_fd0wc"]
+[ext_resource type="PackedScene" uid="uid://coq6d3u6wnvs2" path="res://components/platform/platform.tscn" id="7_y1epa"]
+[ext_resource type="PackedScene" uid="uid://8st4scqt06l8" path="res://components/player/player.tscn" id="8_ldc06"]
+[ext_resource type="SpriteFrames" uid="uid://bo581k1esb50n" path="res://components/player/spriteframes-red.tres" id="9_6cyi7"]
+[ext_resource type="PackedScene" uid="uid://jt80gv02u4f2" path="res://hud.tscn" id="10_3nbn3"]
+[ext_resource type="PackedScene" uid="uid://dk0xon0k7ga23" path="res://components/enemy/enemy.tscn" id="11_wjemy"]
+[ext_resource type="Texture2D" uid="uid://c587txkmamemb" path="res://حاجز.png" id="12_7pigt"]
+[ext_resource type="Script" uid="uid://boqbxvbja884q" path="res://scripts/multiplayer_camera.gd" id="13_u5ox4"]
+[ext_resource type="Texture2D" uid="uid://c148iws1htpbv" path="res://الارضيه3.png" id="14_2d3eh"]
+[ext_resource type="Texture2D" uid="uid://cnnae30wp2c2c" path="res://الارضيه4.png" id="15_ta5di"]
+[ext_resource type="Texture2D" uid="uid://uolr1f8fv2us" path="res://ارضيه.jpg" id="16_f20lv"]
+[ext_resource type="Texture2D" uid="uid://cqn51gu5kq0r0" path="res://ارضيه-removebg-preview.png" id="17_ffqmk"]
+[ext_resource type="PackedScene" uid="uid://cswheshouik14" path="res://rules_goals/game_logic.tscn" id="18_q8gd2"]
+[ext_resource type="Texture2D" uid="uid://cp3fp7tmqo3g0" path="res://اشواك.png" id="19_o0njv"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_oxefs")]
+
+[node name="TopPlatformerGame" type="Sprite2D" parent="Background"]
+texture_filter = 1
+position = Vector2(3889.6858, 198.37994)
+scale = Vector2(12.198166, 5.879888)
+texture = ExtResource("2_snmma")
+
+[node name="Dangerzone" parent="." instance=ExtResource("3_qrtp2")]
+position = Vector2(3072, 1216)
+
+[node name="TileMap" parent="." instance=ExtResource("4_dtw35")]
+position = Vector2(2, -1)
+scale = Vector2(1.0023395, 1)
+tile_map_data = PackedByteArray("AAAAAAUAAAACAAAAAAABAAUAAAACAAAAAAACAAUAAAACAAAAAAADAAUAAAACAAAAAAAEAAUAAAACAAAAAAAFAAUAAAACAAAAAAAGAAUAAAACAAAAAAAHAAUAAAACAAAAAAAIAAUAAAACAAAAAAAJAAUAAAACAAAAAAAKAAYAAAAKAAEAAAAJAAYAAQAAAAEAAAAIAAYAAQAAAAEAAAAHAAYAAQAAAAEAAAAGAAYAAQAAAAEAAAAFAAYAAQAAAAEAAAAEAAYAAQAAAAEAAAADAAYAAQAAAAEAAAACAAYAAQAAAAEAAAABAAYAAQAAAAEAAAAAAAYAAQAAAAEAAAAAAAcAAQAAAAEAAAABAAcAAQAAAAEAAAACAAcAAQAAAAEAAAADAAcAAQAAAAEAAAAEAAcAAQAAAAEAAAAFAAcAAQAAAAEAAAAGAAcAAQAAAAEAAAAHAAcAAQAAAAEAAAAIAAcAAQAAAAEAAAAJAAcAAQAAAAEAAAAKAAcAAQAAAAEAAAAIAAgAAQAAAAEAAAAHAAgAAQAAAAEAAAAGAAgAAQAAAAEAAAAFAAgAAQAAAAEAAAAEAAgAAQAAAAEAAAABAAgAAQAAAAEAAAAAAAgAAQAAAAEAAAACAAQAAQAAAAEAAAACAAMAAQAAAAEAAAABAAIAAAAHAAIAAAADAAIAAAAIAAIAAAACAAIAAAACAAAAAAALAAcAAQAAAAEAAAAMAAcAAQAAAAEAAAANAAcAAQAAAAEAAAAOAAcAAQAAAAEAAAAOAAYAAAAKAAEAAAAOAAUAAAAKAAEAAAAPAAYAAAAKAAEAAAATAAYAAAAKAAEAAAAUAAYAAAAKAAEAAAAUAAcAAAAKAAEAAAATAAcAAAAKAAEAAAASAAcAAAAKAAEAAAARAAcAAAAKAAEAAAAQAAcAAAAKAAEAAAAPAAcAAQAAAAEAAAAQAAgAAQAAAAEAAAARAAgAAQAAAAEAAAASAAgAAQAAAAEAAAATAAgAAQAAAAEAAAAFAAQAAAAJAAAAAAAKAAQAAAAJAAAAAAAOAAQAAAAJAAAAAAAIAAQAAAAKAAAAAAD//wgAAAAKAAEAAAD//wcAAAAKAAEAAAD//wYAAAAKAAEAAAD//wUAAAAKAAEAAAD//wAAAAAKAAEAAAD//wEAAAAKAAEAAAD//wIAAAAKAAEAAAD//wMAAAAKAAEAAAD//wQAAAAKAAEAAAD/////AAAKAAEAAAD///7/AAAKAAEAAAD///3/AAAKAAEAAAAJAAgAAQAAAAEAAAAKAAgAAQAAAAEAAAALAAgAAQAAAAEAAAAMAAgAAQAAAAEAAAANAAgAAQAAAAEAAAAOAAgAAQAAAAEAAAAPAAgAAQAAAAEAAAAVAAgAAQAAAAEAAAAbAAgAAAAKAAEAAAAaAAgAAQAAAAEAAAAZAAgAAQAAAAEAAAAYAAgAAQAAAAEAAAAXAAgAAQAAAAEAAAAWAAgAAQAAAAEAAAALAAYAAAACAAAAAAAMAAYAAAACAAAAAAANAAYAAAACAAAAAAAkAAIAAAADAAEAAAAjAAMAAAADAAEAAAAlAAIAAAABAAAAAAAlAAMAAAAAAAAAAAAlAAQAAAAAAAEAAAAlAAUAAAAAAAAAAAAmAAUAAAAAAAAAAAAmAAQAAAAAAAAAAAAmAAMAAAAAAAAAAAAmAAIAAAACAAAAAAAnAAIAAAACAAAAAAAnAAMAAAAAAAAAAAAnAAQAAAAKAAEAAAAnAAUAAAAAAAAAAAD///v/AAAKAAEAAAD///z/AAAKAAEAAAAoAAIAAAADAAAAAAAoAAMAAAAAAAAAAAAoAAQAAAAAAAAAAAAoAAUAAAAAAAAAAAApAAMAAAAKAAEAAAApAAQAAAAKAAEAAAApAAUAAAAKAAEAAAAbAAUAAAAKAAEAAAAXAAcAAAACAAAAAAAZAAcAAQAAAAEAAAATAAQAAAAKAAIAAAABAAEAAAALAAIAAAACAAgAAQAAAAEAAAADAAgAAQAAAAEAAAAWAAcAAAACAAAAAAAUAAgAAQAAAAEAAAAVAAcAAAACAAAAAAAYAAYAAAAKAAEAAAAYAAcAAAAKAAEAAAAZAAUAAAAKAAEAAAAZAAYAAQAAAAEAAAAaAAUAAAAKAAEAAAAbAAYAAAAKAAEAAAAbAAcAAAAKAAEAAAAeAAUAAAAKAAEAAAAfAAUAAAAKAAEAAAAgAAUAAAAKAAEAAAAhAAUAAAAKAAEAAAAiAAQAAAADAAEAAAAiAAUAAQAAAAEAAAAaAAYAAQAAAAEAAAAaAAcAAQAAAAEAAAAqAAgAAQAAAAEAAAArAAgAAQAAAAEAAAAsAAgAAQAAAAEAAAAtAAgAAQAAAAEAAAAuAAgAAQAAAAEAAAAvAAgAAQAAAAEAAAAwAAgAAQAAAAEAAAAxAAgAAQAAAAEAAAAyAAgAAQAAAAEAAAAzAAgAAQAAAAEAAAA0AAgAAQAAAAEAAAA1AAgAAQAAAAEAAAA2AAgAAQAAAAEAAAA3AAgAAQAAAAEAAAA4AAgAAQAAAAEAAAA5AAgAAQAAAAEAAAA6AAgAAQAAAAEAAAA7AAgAAQAAAAEAAAAqAAcAAAAKAAEAAAArAAcAAAAKAAEAAAAsAAcAAAAKAAEAAAAtAAcAAAAKAAEAAAAuAAcAAAAKAAEAAAAvAAcAAAAKAAEAAAAwAAcAAAAKAAEAAAAxAAcAAAAKAAEAAAAyAAcAAAAKAAEAAAAzAAcAAAAKAAEAAAA0AAcAAAAKAAEAAAA1AAcAAAAKAAEAAAA2AAcAAAAKAAEAAAA4AAcAAAAKAAEAAAApAAIAAAAKAAEAAAAjAAUAAQAAAAEAAAAjAAQAAQAAAAEAAAAkAAMAAQAAAAEAAAAkAAQAAQAAAAEAAAAkAAUAAQAAAAEAAAAeAAYAAAAKAAEAAAAfAAYAAQAAAAEAAAAgAAYAAQAAAAEAAAAhAAYAAQAAAAEAAAAiAAYAAQAAAAEAAAAeAAcAAAAKAAEAAAAfAAcAAQAAAAEAAAAgAAcAAQAAAAEAAAAhAAcAAQAAAAEAAAAiAAcAAQAAAAEAAAAjAAYAAQAAAAEAAAAkAAYAAQAAAAEAAAAlAAYAAQAAAAEAAAAmAAYAAQAAAAEAAAAnAAYAAQAAAAEAAAAoAAYAAQAAAAEAAAApAAYAAAAKAAEAAAApAAcAAAAKAAEAAAAoAAcAAQAAAAEAAAAnAAcAAQAAAAEAAAAmAAcAAQAAAAEAAAAlAAcAAQAAAAEAAAAkAAcAAQAAAAEAAAAjAAcAAQAAAAEAAAApAAgAAAAKAAEAAAAoAAgAAQAAAAEAAAAnAAgAAQAAAAEAAAAmAAgAAQAAAAEAAAAlAAgAAQAAAAEAAAAkAAgAAQAAAAEAAAAjAAgAAQAAAAEAAAAiAAgAAQAAAAEAAAAhAAgAAQAAAAEAAAAgAAgAAQAAAAEAAAAfAAgAAQAAAAEAAAAeAAgAAAAKAAEAAAAYAAUAAAAKAAEAAAAsAAIAAAAKAAEAAAAsAAMAAAAKAAEAAAAsAAQAAAAKAAEAAAAsAAUAAAALAAEAAAAuAAAAAAAKAAEAAAAvAAAAAAAKAAEAAAAPAAUAAAAKAAEAAAATAAUAAAAKAAEAAAAUAAUAAAAKAAEAAAAKAAUAAAAKAAEAAAA3AAcAAAAKAAEAAAA3AAYAAAAKAAEAAAA3AAUAAAAKAAEAAAA3AAQAAAAKAAEAAAA3AAMAAAAKAAEAAAA3AAIAAAAKAAEAAAA3AAEAAAAKAAEAAAA5AAcAAAAKAAEAAAA6AAcAAAAKAAEAAAA7AAcAAAAKAAEAAAA3AAAAAAALAAEAAAAoAAEAAAALAAEAAAArAAYAAAALAAEAAAAsAAYAAAALAAEAAAAtAAQAAAAKAAEAAAAuAAQAAAAKAAEAAAArAAUAAAALAAEAAAAtAAUAAAALAAEAAAAtAAYAAAALAAEAAAA=")
+
+[node name="Coins" type="Node2D" parent="."]
+light_mask = 3
+
+[node name="Coin" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(2891, 834)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(3747, 307)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(2249, 839)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin5" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(2880, 128)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin6" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(3128, -239)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin7" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(3890, 428)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(3458, 138)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin13" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(3342, 131)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin14" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(3008, 128)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin15" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(2752, 128)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin16" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(6067, 701)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin25" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(6205, 612)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin26" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(5979, 836)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin22" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(5670, 195)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin23" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(4931, 175)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin24" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(5024, 175)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin17" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(4586, 293)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin20" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(5112, 176)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin27" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(6430, 830)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin28" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(6342, 700)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin18" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(4379, 506)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin21" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(6101, -38)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin19" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(5972, -38)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin9" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(961, 576)
+collision_layer = 3
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin10" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(1890, 14)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin29" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(2354, 204)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin30" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(1890, -204)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin31" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(1890, -100)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Coin11" parent="Coins" instance=ExtResource("5_kgfcb")]
+modulate = Color(0.9439426, 0.95753545, 0.9975129, 1)
+position = Vector2(4162, 152)
+texture = ExtResource("6_fd0wc")
+tint = Color(0.9439426, 0.95753545, 0.9975129, 1)
+
+[node name="Platforms" type="Node2D" parent="."]
+position = Vector2(1920, -64)
+
+[node name="Platform" parent="Platforms" instance=ExtResource("7_y1epa")]
+position = Vector2(960, 320)
+width = 2
+
+[node name="Platform4" parent="Platforms" instance=ExtResource("7_y1epa")]
+position = Vector2(-36, 163)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform6" parent="Platforms" instance=ExtResource("7_y1epa")]
+position = Vector2(429, 394)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform7" parent="Platforms" instance=ExtResource("7_y1epa")]
+position = Vector2(4642, 513)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform8" parent="Platforms" instance=ExtResource("7_y1epa")]
+position = Vector2(2225, 334)
+scale = Vector2(1.3287047, 1)
+width = 2
+one_way = true
+fall_time = 2.0
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("7_y1epa")]
+position = Vector2(1216, -64)
+width = 2
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("7_y1epa")]
+position = Vector2(1472, 452)
+width = 2
+
+[node name="Player" parent="." instance=ExtResource("8_ldc06")]
+position = Vector2(512, 575)
+collision_layer = 1
+collision_mask = 7
+sprite_frames = ExtResource("9_6cyi7")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, 15)
+limit_left = 0
+limit_bottom = 1080
+position_smoothing_enabled = true
+
+[node name="Panel" type="Panel" parent="Player"]
+offset_left = -512.0
+offset_top = -576.0
+offset_right = -472.0
+offset_bottom = -536.0
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Player/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LineEdit" type="LineEdit" parent="Player/Panel/Label"]
+layout_mode = 0
+offset_right = 68.5625
+offset_bottom = 31.0
+
+[node name="Button" type="Button" parent="Player/Panel/Label/LineEdit"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="HUD" parent="." instance=ExtResource("10_3nbn3")]
+
+[node name="Enemy" parent="." instance=ExtResource("11_wjemy")]
+position = Vector2(1592, 743)
+
+[node name="حاجز" type="Sprite2D" parent="Enemy"]
+position = Vector2(-30.00002, -63.000015)
+scale = Vector2(0.5142142, 0.5115893)
+texture = ExtResource("12_7pigt")
+
+[node name="Enemy2" parent="." instance=ExtResource("11_wjemy")]
+position = Vector2(1912, 615)
+
+[node name="حاجز" type="Sprite2D" parent="Enemy2"]
+position = Vector2(-13, -65)
+scale = Vector2(0.5501672, 0.5629139)
+texture = ExtResource("12_7pigt")
+
+[node name="Enemy3" parent="." instance=ExtResource("11_wjemy")]
+position = Vector2(4120, 609)
+
+[node name="حاجز2" type="Sprite2D" parent="Enemy3"]
+position = Vector2(-17.999954, -65)
+scale = Vector2(0.5409695, 0.54635763)
+texture = ExtResource("12_7pigt")
+
+[node name="Enemy4" parent="." instance=ExtResource("11_wjemy")]
+position = Vector2(6521, 842)
+
+[node name="حاجز2" type="Sprite2D" parent="Enemy4"]
+position = Vector2(-19.999954, -68)
+scale = Vector2(0.5409695, 0.54635763)
+texture = ExtResource("12_7pigt")
+
+[node name="Enemy5" parent="." instance=ExtResource("11_wjemy")]
+position = Vector2(5212, 231)
+
+[node name="حاجز2" type="Sprite2D" parent="Enemy5"]
+position = Vector2(-17.999954, -70)
+scale = Vector2(0.5409695, 0.54635763)
+texture = ExtResource("12_7pigt")
+
+[node name="MultiplayerCamera" type="Camera2D" parent="."]
+position = Vector2(0, 15)
+enabled = false
+limit_left = 0
+limit_bottom = 1080
+position_smoothing_enabled = true
+script = ExtResource("13_u5ox4")
+
+[node name="الارضيه3" type="Sprite2D" parent="."]
+position = Vector2(317, 298)
+scale = Vector2(1.50369, 2.9464285)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه6" type="Sprite2D" parent="."]
+position = Vector2(2566.75, 685.5)
+scale = Vector2(0.9132841, 2.8035703)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه11" type="Sprite2D" parent="."]
+position = Vector2(1924, 685)
+scale = Vector2(0.9723247, 2.8035703)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه12" type="Sprite2D" parent="."]
+position = Vector2(1610, 817.00006)
+scale = Vector2(1.4617159, 2.8035703)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه13" type="Sprite2D" parent="."]
+position = Vector2(2253, 941)
+scale = Vector2(1.4617159, 2.8035703)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه14" type="Sprite2D" parent="."]
+position = Vector2(2899, 946)
+scale = Vector2(1.4617159, 2.8035703)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه15" type="Sprite2D" parent="."]
+position = Vector2(3336, 689)
+scale = Vector2(1.8932201, 2.8035703)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه7" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(313.62497, 673.5)
+scale = Vector2(2.2241697, 2.5178573)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه16" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(889, 674)
+scale = Vector2(2.2241697, 2.5178573)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه17" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(1101.8125, 674)
+scale = Vector2(2.2818267, 2.5178573)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه9" type="Sprite2D" parent="."]
+position = Vector2(5232.25, 551)
+scale = Vector2(1.4914402, 1.5667506)
+texture = ExtResource("15_ta5di")
+
+[node name="ارضيه2" type="Sprite2D" parent="."]
+position = Vector2(5045, 696)
+scale = Vector2(1.4255319, 1.5301049)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه12" type="Sprite2D" parent="."]
+position = Vector2(3140.9998, 894.4375)
+scale = Vector2(1.4255319, 1.3252621)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه13" type="Sprite2D" parent="."]
+position = Vector2(3140.9998, 894.4375)
+scale = Vector2(1.4255319, 1.3252621)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه8" type="Sprite2D" parent="."]
+position = Vector2(5672, 406.00003)
+scale = Vector2(2.2127662, 1.5301049)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه9" type="Sprite2D" parent="."]
+position = Vector2(5673, 623)
+scale = Vector2(2.1276605, 0.78534013)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه7" type="Sprite2D" parent="."]
+position = Vector2(5184, 699)
+scale = Vector2(1.51064, 1.5301049)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيهRemovebgPreview" type="Sprite2D" parent="."]
+position = Vector2(4905, 766)
+scale = Vector2(3.408539, 3.128049)
+texture = ExtResource("17_ffqmk")
+
+[node name="ارضيهRemovebgPreview2" type="Sprite2D" parent="."]
+position = Vector2(4398, 713)
+scale = Vector2(4.4083266, 2.6187046)
+texture = ExtResource("17_ffqmk")
+
+[node name="الارضيه10" type="Sprite2D" parent="."]
+position = Vector2(4550.364, 480.75305)
+rotation = -0.85286754
+scale = Vector2(2.0759277, 2.598891)
+texture = ExtResource("14_2d3eh")
+
+[node name="الارضيه18" type="Sprite2D" parent="."]
+position = Vector2(4139.0005, 692)
+rotation = -0.011696226
+scale = Vector2(2.1425626, 3.2300577)
+texture = ExtResource("14_2d3eh")
+
+[node name="ارضيه19" type="Sprite2D" parent="."]
+position = Vector2(6035, 79.000046)
+rotation = -1.5562173
+scale = Vector2(1.434481, 1.3533981)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه20" type="Sprite2D" parent="."]
+position = Vector2(5898, 580.99994)
+rotation = -1.5720385
+scale = Vector2(1.434481, 1.3533981)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه6" type="Sprite2D" parent="."]
+position = Vector2(5324, 850)
+scale = Vector2(1.4893644, 3.1413615)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه10" type="Sprite2D" parent="."]
+position = Vector2(3528, 960.25)
+scale = Vector2(1.4042516, 2.0183246)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيه11" type="Sprite2D" parent="."]
+position = Vector2(3912, 958)
+scale = Vector2(1.4042516, 2.0183246)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيهRemovebgPreview3" type="Sprite2D" parent="."]
+position = Vector2(4769.0005, 777)
+scale = Vector2(2.9634147, 3.402439)
+texture = ExtResource("17_ffqmk")
+
+[node name="GameLogic" parent="." instance=ExtResource("18_q8gd2")]
+win_by_collecting_coins = true
+win_by_reaching_flag = true
+
+[node name="ارضيه" type="Sprite2D" parent="."]
+position = Vector2(3600.0002, 233.25)
+scale = Vector2(1, 9.599477)
+texture = ExtResource("16_f20lv")
+
+[node name="ارضيهRemovebgPreview4" type="Sprite2D" parent="ارضيه"]
+position = Vector2(3518.2498, 28.17862)
+scale = Vector2(2.9390244, 1.9678409)
+texture = ExtResource("17_ffqmk")
+
+[node name="ارضيه" type="Sprite2D" parent="ارضيه"]
+position = Vector2(2954.9995, 75.49891)
+rotation = 1.5703914
+scale = Vector2(0.14625725, 12.197268)
+texture = ExtResource("16_f20lv")
+
+[node name="اشواك" type="Sprite2D" parent="."]
+position = Vector2(7094, 587.00006)
+rotation = -1.5844035
+texture = ExtResource("19_o0njv")
+
+[node name="اشواك2" type="Sprite2D" parent="."]
+position = Vector2(7095, 790)
+rotation = -1.5844035
+texture = ExtResource("19_o0njv")
+
+[node name="اشواك3" type="Sprite2D" parent="."]
+position = Vector2(7090.9995, 404.00003)
+rotation = -1.5844035
+texture = ExtResource("19_o0njv")
+
+[node name="اشواك4" type="Sprite2D" parent="."]
+position = Vector2(7090, 217.00002)
+rotation = -1.5844035
+texture = ExtResource("19_o0njv")
